@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Samaresh — AI / ML</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #f2f2f2;
+    font-family: Inter, sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   CUSTOM CURSOR
+===================================================== */
+
+.cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition:
+        width .25s ease,
+        height .25s ease,
+        background .25s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor.big {
+    width: 55px;
+    height: 55px;
+    background: white;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.grid-background {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+}
+
+.glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,40,40,.10),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+
+    z-index: -2;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+nav {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 28px 5vw;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 100;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(8,8,8,.9),
+            transparent
+        );
+}
+
+.logo {
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: #ff3030;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+
+    list-style: none;
+}
+
+.nav-links a {
+    font-family: "DM Mono";
+    font-size: 10px;
+
+    color: #777;
+
+    letter-spacing: 1px;
+
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-right {
+    font-family: "DM Mono";
+
+    font-size: 9px;
+
+    color: #555;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    min-height: 100vh;
+
+    padding:
+        150px 7vw
+        80px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.hero-content {
+    width: 100%;
+}
+
+.small-label {
+    font-family: "DM Mono";
+
+    color: #666;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 30px;
+}
+
+.small-label span {
+    color: #ff3030;
+}
+
+.hero-title {
+    font-size: clamp(
+        5rem,
+        13vw,
+        13rem
+    );
+
+    line-height: .78;
+
+    letter-spacing: -10px;
+
+    font-weight: 700;
+
+    max-width: 1200px;
+}
+
+.hero-title .outline {
+    color: transparent;
+
+    -webkit-text-stroke:
+        1px #555;
+}
+
+.hero-title .red {
+    color: #ff3030;
+}
+
+.hero-bottom {
+    margin-top: 70px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+}
+
+.hero-description {
+    max-width: 440px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+}
+
+.hero-description strong {
+    color: #ddd;
+}
+
+.hero-meta {
+    text-align: right;
+
+    font-family: "DM Mono";
+
+    font-size: 9px;
+
+    color: #555;
+
+    line-height: 2;
+}
+
+
+/* =====================================================
+   HERO ORBIT
+===================================================== */
+
+.orbit {
+    position: absolute;
+
+    right: 8vw;
+    top: 50%;
+
+    width: 250px;
+    height: 250px;
+
+    transform:
+        translateY(-50%);
+
+    pointer-events: none;
+}
+
+.orbit-ring {
+    position: absolute;
+
+    inset: 0;
+
+    border: 1px solid #222;
+
+    border-radius: 50%;
+
+    animation:
+        rotate 15s linear infinite;
+}
+
+.orbit-ring:nth-child(2) {
+    inset: 30px;
+
+    border-color: #ff3030;
+
+    opacity: .4;
+
+    animation-duration: 10s;
+}
+
+.orbit-ring:nth-child(3) {
+    inset: 65px;
+
+    opacity: .5;
+
+    animation-duration: 7s;
+
+    animation-direction: reverse;
+}
+
+.orbit-core {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 45px;
+    height: 45px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: #ff3030;
+
+    box-shadow:
+        0 0 30px rgba(255,30,30,.7),
+        0 0 100px rgba(255,30,30,.2);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   SECTION COMMON
+===================================================== */
+
+section {
+    position: relative;
+}
+
+.section {
+    padding:
+        180px 7vw;
+}
+
+.section-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 100px;
+}
+
+.section-number {
+    font-family: "DM Mono";
+
+    font-size: 10px;
+
+    color: #ff3030;
+
+    letter-spacing: 3px;
+}
+
+.section-title {
+    font-size:
+        clamp(3rem, 7vw, 8rem);
+
+    line-height: .85;
+
+    letter-spacing: -6px;
+
+    max-width: 900px;
+}
+
+.section-title span {
+    color: #444;
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.2fr .8fr;
+
+    gap: 10vw;
+}
+
+.about-big {
+    font-size:
+        clamp(2rem, 4vw, 4.5rem);
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+}
+
+.about-big span {
+    color: #555;
+}
+
+.about-text {
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    max-width: 420px;
+}
+
+.about-text strong {
+    color: white;
+}
+
+.about-info {
+    margin-top: 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    border-top: 1px solid #222;
+}
+
+.info-box {
+    padding:
+        20px 0;
+
+    border-bottom: 1px solid #222;
+}
+
+.info-box:nth-child(odd) {
+    border-right: 1px solid #222;
+
+    padding-right: 20px;
+}
+
+.info-box:nth-child(even) {
+    padding-left: 20px;
+}
+
+.info-label {
+    font-family: "DM Mono";
+
+    font-size: 8px;
+
+    color: #555;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.info-value {
+    font-size: 12px;
+
+    color: #bbb;
+}
+
+
+/* =====================================================
+   SKILLS
+===================================================== */
+
+.skills-section {
+    border-top: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+}
+
+.skills-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    border-top: 1px solid #222;
+    border-left: 1px solid #222;
+}
+
+.skill {
+    min-height: 180px;
+
+    padding: 30px;
+
+    border-right: 1px solid #222;
+    border-bottom: 1px solid #222;
+
+    transition: .4s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.skill:hover {
+    background: #101010;
+}
+
+.skill-number {
+    font-family: "DM Mono";
+
+    color: #444;
+
+    font-size: 9px;
+}
+
+.skill-name {
+    position: absolute;
+
+    left: 30px;
+    bottom: 30px;
+
+    font-size: 20px;
+
+    letter-spacing: -1px;
+}
+
+.skill::after {
+    content: "";
+
+    position: absolute;
+
+    right: -30px;
+    top: -30px;
+
+    width: 100px;
+    height: 100px;
+
+    border: 1px solid #252525;
+
+    border-radius: 50%;
+
+    transition: .5s;
+}
+
+.skill:hover::after {
+    border-color: #ff3030;
+
+    transform:
+        scale(1.5);
+}
+
+
+/* =====================================================
+   PROJECTS
+===================================================== */
+
+.project-list {
+    border-top: 1px solid #222;
+}
+
+.project {
+    position: relative;
+
+    min-height: 230px;
+
+    padding:
+        45px 20px;
+
+    border-bottom: 1px solid #222;
+
+    display: grid;
+
+    grid-template-columns:
+        80px 1fr 300px 100px;
+
+    align-items: center;
+
+    transition: .4s;
+
+    overflow: hidden;
+}
+
+.project:hover {
+    padding-left: 35px;
+
+    background: #0d0d0d;
+}
+
+.project-index {
+    font-family: "DM Mono";
+
+    font-size: 10px;
+
+    color: #555;
+}
+
+.project-name {
+    font-size:
+        clamp(2rem, 4vw, 4rem);
+
+    font-weight: 600;
+
+    letter-spacing: -3px;
+}
+
+.project-description {
+    color: #666;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    padding-right: 40px;
+}
+
+.project-arrow {
+    font-size: 25px;
+
+    color: #444;
+
+    transition: .4s;
+}
+
+.project:hover .project-arrow {
+    color: #ff3030;
+
+    transform:
+        translateX(10px);
+}
+
+
+/* =====================================================
+   PROJECT VISUAL
+===================================================== */
+
+.project-visual {
+    position: absolute;
+
+    right: 100px;
+
+    width: 0;
+    height: 150px;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        width .5s,
+        opacity .5s;
+}
+
+.project:hover .project-visual {
+    width: 220px;
+
+    opacity: 1;
+}
+
+.visual-circle {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    border: 1px solid #333;
+
+    position: relative;
+}
+
+.visual-circle::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 20px;
+
+    border-radius: 50%;
+
+    border: 1px dashed #ff3030;
+
+    animation:
+        rotate 8s linear infinite;
+}
+
+.visual-circle::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 55px;
+
+    border-radius: 50%;
+
+    background: #ff3030;
+
+    box-shadow:
+        0 0 30px #ff3030;
+}
+
+
+/* =====================================================
+   EXPERIENCE
+===================================================== */
+
+.experience {
+    min-height: 80vh;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.experience-text {
+    font-size:
+        clamp(3rem, 7vw, 8rem);
+
+    line-height: .95;
+
+    letter-spacing: -5px;
+
+    max-width: 1200px;
+}
+
+.experience-text .dim {
+    color: #292929;
+}
+
+.experience-text .red {
+    color: #ff3030;
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact {
+    min-height: 90vh;
+
+    display: flex;
+
+    align-items: center;
+
+    border-top: 1px solid #181818;
+}
+
+.contact-title {
+    font-size:
+        clamp(4rem, 11vw, 12rem);
+
+    line-height: .78;
+
+    letter-spacing: -9px;
+}
+
+.contact-title span {
+    color: #ff3030;
+}
+
+.contact-bottom {
+    margin-top: 80px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+}
+
+.contact-link {
+    font-family: "DM Mono";
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #aaa;
+
+    border-bottom: 1px solid #444;
+
+    padding-bottom: 10px;
+
+    transition: .3s;
+}
+
+.contact-link:hover {
+    color: #ff3030;
+
+    border-color: #ff3030;
+}
+
+.contact-note {
+    color: #555;
+
+    font-size: 10px;
+
+    line-height: 1.8;
+
+    max-width: 250px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    padding:
+        30px 7vw;
+
+    border-top: 1px solid #181818;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #444;
+
+    font-family: "DM Mono";
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(50px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.16,1,.3,1);
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-right {
+        display: none;
+    }
+
+    .hero {
+        padding-left: 7vw;
+        padding-right: 7vw;
+    }
+
+    .hero-title {
+        letter-spacing: -6px;
+    }
+
+    .orbit {
+        opacity: .25;
+
+        right: -80px;
+    }
+
+    .hero-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 40px;
+    }
+
+    .hero-meta {
+        text-align: left;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .project {
+        grid-template-columns:
+            50px 1fr 40px;
+    }
+
+    .project-description,
+    .project-visual {
+        display: none;
+    }
+
+    .project-name {
+        font-size: 2rem;
+    }
+
+    .contact-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 40px;
+    }
+}
+
+
+@media(max-width:500px) {
+
+    .section {
+        padding:
+            120px 6vw;
+    }
+
+    .hero {
+        padding:
+            130px 6vw 70px;
+    }
+
+    .hero-title {
+        font-size:
+            4.4rem;
+
+        letter-spacing: -5px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skill {
+        min-height: 140px;
+    }
+
+    .contact-title {
+        font-size:
+            4.5rem;
+
+        letter-spacing: -5px;
+    }
+
+    footer {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     CURSOR
+===================================================== -->
+
+<div class="cursor" id="cursor"></div>
+
+<div class="glow" id="glow"></div>
+
+<div class="grid-background"></div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav>
+
+    <a href="#" class="logo">
+        SAMARESH<span>.</span>
+    </a>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#about">ABOUT</a>
+        </li>
+
+        <li>
+            <a href="#skills">SKILLS</a>
+        </li>
+
+        <li>
+            <a href="#projects">PROJECTS</a>
+        </li>
+
+        <li>
+            <a href="#contact">CONTACT</a>
+        </li>
+
+    </ul>
+
+    <div class="nav-right">
+        AI / ML — 2026
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content reveal">
+
+        <div class="small-label">
+            <span>●</span>
+            AI / MACHINE LEARNING
+        </div>
+
+        <h1 class="hero-title">
+
+            BUILD<br>
+
+            <span class="outline">
+                INTELLIGENCE
+            </span><br>
+
+            <span class="red">
+                DIFFERENT.
+            </span>
+
+        </h1>
+
+
+        <div class="hero-bottom">
+
+            <div class="hero-description">
+
+                I'm <strong>Samaresh</strong> —
+                a developer exploring the intersection
+                of machine learning, artificial intelligence
+                and software.
+
+                <br><br>
+
+                Currently learning.
+                Constantly building.
+
+            </div>
+
+
+            <div class="hero-meta">
+
+                INDIA<br>
+                CSE / AI<br>
+                AVAILABLE FOR PROJECTS
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- 3D-STYLE ORBIT -->
+
+    <div class="orbit">
+
+        <div class="orbit-ring"></div>
+
+        <div class="orbit-ring"></div>
+
+        <div class="orbit-ring"></div>
+
+        <div class="orbit-core"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section class="section" id="about">
+
+    <div class="section-top reveal">
+
+        <div class="section-number">
+            01 / ABOUT
+        </div>
+
+        <div style="font-family:'DM Mono';font-size:9px;color:#444;">
+            WHO I AM
+        </div>
+
+    </div>
+
+
+    <div class="about-grid">
+
+        <div class="about-big reveal">
+
+            Learning to turn
+            <span>data, models and ideas</span>
+            into things that actually work.
+
+        </div>
+
+
+        <div class="reveal">
+
+            <div class="about-text">
+
+                My focus is on understanding AI from
+                the fundamentals rather than simply
+                using pre-built tools.
+
+                <br><br>
+
+                I'm working through
+                <strong>Machine Learning → Deep Learning
+                → Generative AI → RAG → AI Agents.</strong>
+
+                <br><br>
+
+                The goal is simple:
+
+                <strong>build better things.</strong>
+
+            </div>
+
+
+            <div class="about-info">
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        CURRENT FOCUS
+                    </div>
+
+                    <div class="info-value">
+                        Machine Learning
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        NEXT
+                    </div>
+
+                    <div class="info-value">
+                        Deep Learning
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        INTEREST
+                    </div>
+
+                    <div class="info-value">
+                        Generative AI
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        BUILDING
+                    </div>
+
+                    <div class="info-value">
+                        AI Applications
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SKILLS
+===================================================== -->
+
+<section class="section skills-section" id="skills">
+
+    <div class="section-top reveal">
+
+        <div class="section-number">
+            02 / TOOLKIT
+        </div>
+
+    </div>
+
+
+    <h2 class="section-title reveal">
+
+        THE<br>
+
+        <span>STACK.</span>
+
+    </h2>
+
+
+    <div class="skills-grid" style="margin-top:100px;">
+
+
+        <div class="skill reveal">
+
+            <div class="skill-number">
+                01
+            </div>
+
+            <div class="skill-name">
+                Python
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-number">
+                02
+            </div>
+
+            <div class="skill-name">
+                NumPy
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-number">
+                03
+            </div>
+
+            <div class="skill-name">
+                Pandas
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-number">
+                04
+            </div>
+
+            <div class="skill-name">
+                Scikit-Learn
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-number">
+                05
+            </div>
+
+            <div class="skill-name">
+                Machine Learning
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-number">
+                06
+            </div>
+
+            <div class="skill-name">
+                GenAI
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-number">
+                07
+            </div>
+
+            <div class="skill-name">
+                Streamlit
+            </div>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-number">
+                08
+            </div>
+
+            <div class="skill-name">
+                Git / GitHub
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
+
+<section class="section" id="projects">
+
+    <div class="section-top reveal">
+
+        <div class="section-number">
+            03 / SELECTED WORK
+        </div>
+
+    </div>
+
+
+    <h2 class="section-title reveal">
+
+        THINGS<br>
+
+        <span>I'VE BUILT.</span>
+
+    </h2>
+
+
+    <div class="project-list" style="margin-top:100px;">
+
+
+        <!-- PROJECT 01 -->
+
+        <a href="#" class="project reveal">
+
+            <div class="project-index">
+                001
+            </div>
+
+            <div class="project-name">
+                Gemini LLM App
+            </div>
+
+            <div class="project-description">
+
+                A Streamlit-based AI application
+                using the Gemini API for
+                interactive question answering.
+
+            </div>
+
+            <div class="project-arrow">
+                ↗
+            </div>
+
+            <div class="project-visual">
+
+                <div class="visual-circle"></div>
+
+            </div>
+
+        </a>
+
+
+        <!-- PROJECT 02 -->
+
+        <a href="#" class="project reveal">
+
+            <div class="project-index">
+                002
+            </div>
+
+            <div class="project-name">
+                Car Price Predictor
+            </div>
+
+            <div class="project-description">
+
+                A machine learning project
+                focused on predicting vehicle
+                prices from structured data.
+
+            </div>
+
+            <div class="project-arrow">
+                ↗
+            </div>
+
+            <div class="project-visual">
+
+                <div class="visual-circle"></div>
+
+            </div>
+
+        </a>
+
+
+        <!-- PROJECT 03 -->
+
+        <a href="#" class="project reveal">
+
+            <div class="project-index">
+                003
+            </div>
+
+            <div class="project-name">
+                Computer Vision
+            </div>
+
+            <div class="project-description">
+
+                Exploring real-time object detection
+                and visual understanding using
+                Python and OpenCV.
+
+            </div>
+
+            <div class="project-arrow">
+                ↗
+            </div>
+
+            <div class="project-visual">
+
+                <div class="visual-circle"></div>
+
+            </div>
+
+        </a>
+
+
+        <!-- PROJECT 04 -->
+
+        <a href="#" class="project reveal">
+
+            <div class="project-index">
+                004
+            </div>
+
+            <div class="project-name">
+                Next System
+            </div>
+
+            <div class="project-description">
+
+                Something bigger is currently
+                being built.
+
+            </div>
+
+            <div class="project-arrow">
+                ↗
+            </div>
+
+            <div class="project-visual">
+
+                <div class="visual-circle"></div>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EXPERIENCE / STATEMENT
+===================================================== -->
+
+<section class="section experience">
+
+    <div class="experience-text reveal">
+
+        I DON'T WANT TO
+        <span class="dim">JUST USE AI.</span>
+
+        <br><br>
+
+        I WANT TO
+        <span class="red">UNDERSTAND IT.</span>
+
+        <br><br>
+
+        THEN BUILD WITH IT.
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section class="section contact" id="contact">
+
+    <div style="width:100%;">
+
+        <div class="section-number reveal">
+            04 / CONTACT
+        </div>
+
+
+        <h2 class="contact-title reveal">
+
+            LET'S<br>
+
+            <span>BUILD.</span>
+
+        </h2>
+
+
+        <div class="contact-bottom reveal">
+
+            <a
+                href="mailto:samareshdalal27@gmail.com"
+                class="contact-link"
+            >
+                GET IN TOUCH →
+            </a>
+
+
+            <div class="contact-note">
+
+                Open to interesting projects,
+                collaborations and opportunities
+                around AI / ML.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div>
+        SAMARESH © 2026
+    </div>
+
+    <div>
+        AI / ML
+    </div>
+
+    <div>
+        BUILT FROM SCRATCH
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   CUSTOM CURSOR
+===================================================== */
+
+const cursor =
+    document.getElementById("cursor");
+
+const glow =
+    document.getElementById("glow");
+
+
+let mouseX = 0;
+let mouseY = 0;
+
+let cursorX = 0;
+let cursorY = 0;
+
+
+window.addEventListener(
+    "mousemove",
+    function(e) {
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        glow.style.left =
+            mouseX + "px";
+
+        glow.style.top =
+            mouseY + "px";
+
+    }
+);
+
+
+function animateCursor() {
+
+    cursorX +=
+        (mouseX - cursorX) * .18;
+
+    cursorY +=
+        (mouseY - cursorY) * .18;
+
+    cursor.style.left =
+        cursorX + "px";
+
+    cursor.style.top =
+        cursorY + "px";
+
+    requestAnimationFrame(
+        animateCursor
+    );
+}
+
+animateCursor();
+
+
+/* =====================================================
+   CURSOR HOVER
+===================================================== */
+
+const hoverElements =
+    document.querySelectorAll(
+        "a, .skill, .project"
+    );
+
+
+hoverElements.forEach(
+    element => {
+
+        element.addEventListener(
+            "mouseenter",
+            () => {
+
+                cursor.classList.add(
+                    "big"
+                );
+
+            }
+        );
+
+
+        element.addEventListener(
+            "mouseleave",
+            () => {
+
+                cursor.classList.remove(
+                    "big"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   SCROLL REVEALS
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(
+        ".reveal"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if(
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: .12
+        }
+
+    );
+
+
+revealElements.forEach(
+    element =>
+        observer.observe(element)
+);
+
+
+/* =====================================================
+   MOUSE PARALLAX
+===================================================== */
+
+const orbit =
+    document.querySelector(".orbit");
+
+
+window.addEventListener(
+    "mousemove",
+    function(e) {
+
+        const x =
+            (e.clientX /
+            window.innerWidth - .5);
+
+        const y =
+            (e.clientY /
+            window.innerHeight - .5);
+
+
+        orbit.style.transform =
+            `
+            translateY(-50%)
+            translate(${x * 30}px, ${y * 30}px)
+            rotate(${x * 10}deg)
+            `;
+
+    }
+);
+
+
+/* =====================================================
+   PROJECT MAGNETIC EFFECT
+===================================================== */
+
+const projects =
+    document.querySelectorAll(
+        ".project"
+    );
+
+
+projects.forEach(
+    project => {
+
+        project.addEventListener(
+            "mousemove",
+            function(e) {
+
+                const rect =
+                    project.getBoundingClientRect();
+
+                const x =
+                    e.clientX - rect.left;
+
+                const y =
+                    e.clientY - rect.top;
+
+                const rotateY =
+                    ((x / rect.width) - .5) * 2;
+
+                const rotateX =
+                    ((y / rect.height) - .5) * -2;
+
+                project.style.transform =
+                    `
+                    perspective(1000px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    `;
+
+            }
+        );
+
+
+        project.addEventListener(
+            "mouseleave",
+            function() {
+
+                project.style.transform =
+                    "none";
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   CONSOLE
+===================================================== */
+
+console.log(
+`
+SAMARESH / AI / ML
+
+System initialized.
+
+Keep learning.
+Keep building.
+`
+);
+
+</script>
+
+</body>
+</html>
