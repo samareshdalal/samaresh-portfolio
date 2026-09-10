@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
@@ -72,6 +76,26 @@ button {
 
 
 /* =====================================================
+   PREMIUM CURSOR TRAIL
+===================================================== */
+
+.cursor-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(245, 245, 245, .95);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    filter: blur(.2px);
+    box-shadow: 0 0 6px rgba(255, 255, 255, .45);
+    transition: opacity .3s ease;
+}
+
+
+/* =====================================================
    BACKGROUND
 ===================================================== */
 
@@ -104,7 +128,6 @@ button {
     position: fixed;
     width: 500px;
     height: 500px;
-
     border-radius: 50%;
 
     background:
@@ -115,9 +138,7 @@ button {
         );
 
     pointer-events: none;
-
     transform: translate(-50%, -50%);
-
     z-index: -2;
 }
 
@@ -128,10 +149,8 @@ button {
 
 nav {
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100%;
 
     padding: 28px 5vw;
@@ -153,7 +172,6 @@ nav {
 .logo {
     font-size: 14px;
     font-weight: 700;
-
     letter-spacing: 3px;
 }
 
@@ -164,18 +182,14 @@ nav {
 .nav-links {
     display: flex;
     gap: 35px;
-
     list-style: none;
 }
 
 .nav-links a {
     font-family: "DM Mono";
     font-size: 10px;
-
     color: #777;
-
     letter-spacing: 1px;
-
     transition: .3s;
 }
 
@@ -185,11 +199,8 @@ nav {
 
 .nav-right {
     font-family: "DM Mono";
-
     font-size: 9px;
-
     color: #555;
-
     letter-spacing: 2px;
 }
 
@@ -217,13 +228,9 @@ nav {
 
 .small-label {
     font-family: "DM Mono";
-
     color: #666;
-
     font-size: 10px;
-
     letter-spacing: 4px;
-
     margin-bottom: 30px;
 }
 
@@ -239,19 +246,14 @@ nav {
     );
 
     line-height: .78;
-
     letter-spacing: -10px;
-
     font-weight: 700;
-
     max-width: 1200px;
 }
 
 .hero-title .outline {
     color: transparent;
-
-    -webkit-text-stroke:
-        1px #555;
+    -webkit-text-stroke: 1px #555;
 }
 
 .hero-title .red {
@@ -262,19 +264,14 @@ nav {
     margin-top: 70px;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: flex-end;
 }
 
 .hero-description {
     max-width: 440px;
-
     color: #777;
-
     font-size: 13px;
-
     line-height: 1.9;
 }
 
@@ -286,11 +283,8 @@ nav {
     text-align: right;
 
     font-family: "DM Mono";
-
     font-size: 9px;
-
     color: #555;
-
     line-height: 2;
 }
 
@@ -301,26 +295,21 @@ nav {
 
 .orbit {
     position: absolute;
-
     right: 8vw;
     top: 50%;
 
     width: 250px;
     height: 250px;
 
-    transform:
-        translateY(-50%);
-
+    transform: translateY(-50%);
     pointer-events: none;
 }
 
 .orbit-ring {
     position: absolute;
-
     inset: 0;
 
     border: 1px solid #222;
-
     border-radius: 50%;
 
     animation:
@@ -329,21 +318,15 @@ nav {
 
 .orbit-ring:nth-child(2) {
     inset: 30px;
-
     border-color: #ff3030;
-
     opacity: .4;
-
     animation-duration: 10s;
 }
 
 .orbit-ring:nth-child(3) {
     inset: 65px;
-
     opacity: .5;
-
     animation-duration: 7s;
-
     animation-direction: reverse;
 }
 
@@ -369,6 +352,7 @@ nav {
 }
 
 @keyframes rotate {
+
     from {
         transform: rotate(0);
     }
@@ -376,6 +360,7 @@ nav {
     to {
         transform: rotate(360deg);
     }
+
 }
 
 
@@ -394,21 +379,15 @@ section {
 
 .section-top {
     display: flex;
-
     justify-content: space-between;
-
     align-items: flex-start;
-
     margin-bottom: 100px;
 }
 
 .section-number {
     font-family: "DM Mono";
-
     font-size: 10px;
-
     color: #ff3030;
-
     letter-spacing: 3px;
 }
 
@@ -417,9 +396,7 @@ section {
         clamp(3rem, 7vw, 8rem);
 
     line-height: .85;
-
     letter-spacing: -6px;
-
     max-width: 900px;
 }
 
@@ -446,7 +423,6 @@ section {
         clamp(2rem, 4vw, 4.5rem);
 
     line-height: 1.05;
-
     letter-spacing: -3px;
 }
 
@@ -456,11 +432,8 @@ section {
 
 .about-text {
     color: #777;
-
     font-size: 13px;
-
     line-height: 2;
-
     max-width: 420px;
 }
 
@@ -488,7 +461,6 @@ section {
 
 .info-box:nth-child(odd) {
     border-right: 1px solid #222;
-
     padding-right: 20px;
 }
 
@@ -498,19 +470,14 @@ section {
 
 .info-label {
     font-family: "DM Mono";
-
     font-size: 8px;
-
     color: #555;
-
     letter-spacing: 2px;
-
     margin-bottom: 10px;
 }
 
 .info-value {
     font-size: 12px;
-
     color: #bbb;
 }
 
@@ -536,7 +503,6 @@ section {
 
 .skill {
     min-height: 180px;
-
     padding: 30px;
 
     border-right: 1px solid #222;
@@ -545,7 +511,6 @@ section {
     transition: .4s;
 
     position: relative;
-
     overflow: hidden;
 }
 
@@ -555,9 +520,7 @@ section {
 
 .skill-number {
     font-family: "DM Mono";
-
     color: #444;
-
     font-size: 9px;
 }
 
@@ -568,7 +531,6 @@ section {
     bottom: 30px;
 
     font-size: 20px;
-
     letter-spacing: -1px;
 }
 
@@ -584,7 +546,6 @@ section {
     height: 100px;
 
     border: 1px solid #252525;
-
     border-radius: 50%;
 
     transition: .5s;
@@ -630,15 +591,12 @@ section {
 
 .project:hover {
     padding-left: 35px;
-
     background: #0d0d0d;
 }
 
 .project-index {
     font-family: "DM Mono";
-
     font-size: 10px;
-
     color: #555;
 }
 
@@ -647,25 +605,19 @@ section {
         clamp(2rem, 4vw, 4rem);
 
     font-weight: 600;
-
     letter-spacing: -3px;
 }
 
 .project-description {
     color: #666;
-
     font-size: 11px;
-
     line-height: 1.7;
-
     padding-right: 40px;
 }
 
 .project-arrow {
     font-size: 25px;
-
     color: #444;
-
     transition: .4s;
 }
 
@@ -700,7 +652,6 @@ section {
 
 .project:hover .project-visual {
     width: 220px;
-
     opacity: 1;
 }
 
@@ -754,7 +705,6 @@ section {
     min-height: 80vh;
 
     display: flex;
-
     align-items: center;
 }
 
@@ -763,9 +713,7 @@ section {
         clamp(3rem, 7vw, 8rem);
 
     line-height: .95;
-
     letter-spacing: -5px;
-
     max-width: 1200px;
 }
 
@@ -786,7 +734,6 @@ section {
     min-height: 90vh;
 
     display: flex;
-
     align-items: center;
 
     border-top: 1px solid #181818;
@@ -797,7 +744,6 @@ section {
         clamp(4rem, 11vw, 12rem);
 
     line-height: .78;
-
     letter-spacing: -9px;
 }
 
@@ -809,17 +755,21 @@ section {
     margin-top: 80px;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: flex-end;
 }
 
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
 .contact-link {
+    display: inline-block;
+
     font-family: "DM Mono";
-
     font-size: 11px;
-
     letter-spacing: 2px;
 
     color: #aaa;
@@ -833,17 +783,13 @@ section {
 
 .contact-link:hover {
     color: #ff3030;
-
     border-color: #ff3030;
 }
 
 .contact-note {
     color: #555;
-
     font-size: 10px;
-
     line-height: 1.8;
-
     max-width: 250px;
 }
 
@@ -859,15 +805,12 @@ footer {
     border-top: 1px solid #181818;
 
     display: flex;
-
     justify-content: space-between;
 
     color: #444;
 
     font-family: "DM Mono";
-
     font-size: 8px;
-
     letter-spacing: 2px;
 }
 
@@ -920,15 +863,12 @@ footer {
 
     .orbit {
         opacity: .25;
-
         right: -80px;
     }
 
     .hero-bottom {
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 40px;
     }
 
@@ -961,10 +901,13 @@ footer {
 
     .contact-bottom {
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 40px;
+    }
+
+    .cursor,
+    .cursor-trail {
+        display: none;
     }
 }
 
@@ -1005,7 +948,6 @@ footer {
 
     footer {
         flex-direction: column;
-
         gap: 15px;
     }
 }
@@ -1074,9 +1016,13 @@ footer {
     <div class="hero-content reveal">
 
         <div class="small-label">
+
             <span>●</span>
+
             AI / MACHINE LEARNING
+
         </div>
+
 
         <h1 class="hero-title">
 
@@ -1098,6 +1044,7 @@ footer {
             <div class="hero-description">
 
                 I'm <strong>Samaresh</strong> —
+
                 a developer exploring the intersection
                 of machine learning, artificial intelligence
                 and software.
@@ -1113,8 +1060,7 @@ footer {
             <div class="hero-meta">
 
                 INDIA<br>
-                CSE / AI<br>
-                AVAILABLE FOR PROJECTS
+                samareshdalal27@gmail.com<br>
 
             </div>
 
@@ -1128,9 +1074,7 @@ footer {
     <div class="orbit">
 
         <div class="orbit-ring"></div>
-
         <div class="orbit-ring"></div>
-
         <div class="orbit-ring"></div>
 
         <div class="orbit-core"></div>
@@ -1164,7 +1108,11 @@ footer {
         <div class="about-big reveal">
 
             Learning to turn
-            <span>data, models and ideas</span>
+
+            <span>
+                data, models and ideas
+            </span>
+
             into things that actually work.
 
         </div>
@@ -1181,14 +1129,19 @@ footer {
                 <br><br>
 
                 I'm working through
-                <strong>Machine Learning → Deep Learning
-                → Generative AI → RAG → AI Agents.</strong>
+
+                <strong>
+                    Machine Learning → Deep Learning
+                    → Generative AI → RAG → AI Agents.
+                </strong>
 
                 <br><br>
 
                 The goal is simple:
 
-                <strong>build better things.</strong>
+                <strong>
+                    build better things.
+                </strong>
 
             </div>
 
@@ -1274,13 +1227,17 @@ footer {
 
         TECH<br>
 
-        <span>STACK.</span>
+        <span>
+            STACK.
+        </span>
 
     </h2>
 
 
-    <div class="skills-grid" style="margin-top:100px;">
-
+    <div
+        class="skills-grid"
+        style="margin-top:100px;"
+    >
 
         <div class="skill reveal">
 
@@ -1409,25 +1366,34 @@ footer {
 
         THINGS<br>
 
-        <span>I'VE BUILT.</span>
+        <span>
+            I'VE BUILT.
+        </span>
 
     </h2>
 
 
-    <div class="project-list" style="margin-top:100px;">
+    <div
+        class="project-list"
+        style="margin-top:100px;"
+    >
 
-
-        <!-- PROJECT 01 -->
-
-        <a href="https://github.com/samareshdalal/gemini-llm-app" class="project reveal">
+        <a
+            href="https://github.com/samareshdalal/gemini-llm-app"
+            class="project reveal"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
 
             <div class="project-index">
                 001
             </div>
 
+
             <div class="project-name">
                 Gemini LLM App
             </div>
+
 
             <div class="project-description">
 
@@ -1437,9 +1403,11 @@ footer {
 
             </div>
 
+
             <div class="project-arrow">
                 ↗
             </div>
+
 
             <div class="project-visual">
 
@@ -1449,41 +1417,6 @@ footer {
 
         </a>
 
-
-        <!-- PROJECT 02 -->
-
-        <a href="#" class="project reveal">
-
-            <div class="project-index">
-                002
-            </div>
-
-            <div class="project-name">
-                Car Price Predictor
-            </div>
-
-            <div class="project-description">
-
-                A machine learning project
-                focused on predicting vehicle
-                prices from structured data.
-
-            </div>
-
-            <div class="project-arrow">
-                ↗
-            </div>
-
-            <div class="project-visual">
-
-                <div class="visual-circle"></div>
-
-            </div>
-
-        </a>
-
-
-       
     </div>
 
 </section>
@@ -1498,12 +1431,18 @@ footer {
     <div class="experience-text reveal">
 
         I DON'T WANT TO
-        <span class="dim">JUST USE AI.</span>
+
+        <span class="dim">
+            JUST USE AI.
+        </span>
 
         <br><br>
 
         I WANT TO
-        <span class="red">UNDERSTAND IT.</span>
+
+        <span class="red">
+            UNDERSTAND IT.
+        </span>
 
         <br><br>
 
@@ -1518,66 +1457,97 @@ footer {
      CONTACT
 ===================================================== -->
 
-<section class="section" id="contact">
+<section class="section contact" id="contact">
 
-    <div class="section-top reveal">
+    <div style="width:100%;">
 
-        <div class="section-number">
-            04 / CONTACT
+        <div class="section-top reveal">
+
+            <div class="section-number">
+                04 / CONTACT
+            </div>
+
+        </div>
+
+
+        <h2 class="contact-title reveal">
+
+            LET'S<br>
+
+            <span>
+                BUILD.
+            </span>
+
+        </h2>
+
+
+        <div class="contact-bottom reveal">
+
+            <div class="contact-links">
+
+                <a
+                    href="mailto:samareshdalal27@gmail.com"
+                    class="contact-link"
+                >
+                    EMAIL →
+                </a>
+
+
+                <a
+                    href="https://www.linkedin.com/in/samaresh-dalal-49206025b/"
+                    class="contact-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    LINKEDIN →
+                </a>
+
+
+                <a
+                    href="https://github.com/samareshdalal"
+                    class="contact-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GITHUB →
+                </a>
+
+
+                <a
+                    href="tel:+918900153227"
+                    class="contact-link"
+                >
+                    +91 8900153227 →
+                </a>
+
+                <a
+                    href="https://www.instagram.com/samaresshh/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                >
+                    Instagram →
+                    
+                </a>
+                
+
+            </div>
+            
+
+
+            <div class="contact-note">
+
+                Open to interesting projects,
+                collaborations and opportunities
+                around AI / ML.
+
+            </div>
+
         </div>
 
     </div>
-<div class="contact-bottom reveal">
 
-    <div>
-
-        <a
-            href="mailto:samareshdalal27@gmail.com"
-            class="contact-link"
-        >
-            EMAIL →
-        </a>
-
-        <br>
-
-        <a
-            href="https://www.linkedin.com/in/samaresh-dalal-49206025b/"
-            class="contact-link"
-            target="_blank"
-        >
-            LINKEDIN →
-        </a>
-
-        <br>
-
-        <a
-            href="https://github.com/samareshdalal"
-            class="contact-link"
-            target="_blank"
-        >
-            GITHUB →
-        </a>
-
-        <br>
-
-        <a
-            href="tel:+91XXXXXXXXXX"
-            class="contact-link"
-        >
-            +91 8900153227 →
-        </a>
-
-    </div>
-
-    <div class="contact-note">
-
-        Open to interesting projects,
-        collaborations and opportunities
-        around AI / ML.
-
-    </div>
-
-</div>
+</section>
 
 
 <!-- =====================================================
@@ -1621,12 +1591,48 @@ let cursorX = 0;
 let cursorY = 0;
 
 
+/* =====================================================
+   PREMIUM TRAIL
+===================================================== */
+
+const trail = [];
+
+const trailCount = 18;
+
+
+for (let i = 0; i < trailCount; i++) {
+
+    const dot =
+        document.createElement("div");
+
+    dot.className =
+        "cursor-trail";
+
+    document.body.appendChild(dot);
+
+    trail.push({
+
+        element: dot,
+
+        x: 0,
+        y: 0
+
+    });
+
+}
+
+
+/* =====================================================
+   MOUSE MOVEMENT
+===================================================== */
+
 window.addEventListener(
     "mousemove",
     function(e) {
 
         mouseX = e.clientX;
         mouseY = e.clientY;
+
 
         glow.style.left =
             mouseX + "px";
@@ -1638,6 +1644,10 @@ window.addEventListener(
 );
 
 
+/* =====================================================
+   CURSOR ANIMATION
+===================================================== */
+
 function animateCursor() {
 
     cursorX +=
@@ -1646,15 +1656,86 @@ function animateCursor() {
     cursorY +=
         (mouseY - cursorY) * .18;
 
+
     cursor.style.left =
         cursorX + "px";
 
     cursor.style.top =
         cursorY + "px";
 
+
+    /* PREMIUM TRAIL */
+
+    trail.forEach(
+        (dot, index) => {
+
+            const previous =
+                index === 0
+
+                ? {
+                    x: cursorX,
+                    y: cursorY
+                }
+
+                : trail[index - 1];
+
+
+            const speed =
+                index === 0
+                ? .32
+                : .28;
+
+
+            dot.x +=
+                (previous.x - dot.x)
+                * speed;
+
+            dot.y +=
+                (previous.y - dot.y)
+                * speed;
+
+
+            dot.element.style.left =
+                dot.x + "px";
+
+            dot.element.style.top =
+                dot.y + "px";
+
+
+            /*
+               The front of the trail
+               is brighter and larger.
+            */
+
+            const progress =
+                1 - (index / trailCount);
+
+
+            const opacity =
+                progress * .30;
+
+
+            const size =
+                1.5 + progress * 2.5;
+
+
+            dot.element.style.opacity =
+                opacity;
+
+            dot.element.style.width =
+                size + "px";
+
+            dot.element.style.height =
+                size + "px";
+
+        }
+    );
+
+
     requestAnimationFrame(
         animateCursor
     );
+
 }
 
 animateCursor();
@@ -1712,13 +1793,12 @@ const revealElements =
 
 const observer =
     new IntersectionObserver(
-
         entries => {
 
             entries.forEach(
                 entry => {
 
-                    if(
+                    if (
                         entry.isIntersecting
                     ) {
 
@@ -1732,11 +1812,9 @@ const observer =
             );
 
         },
-
         {
             threshold: .12
         }
-
     );
 
 
@@ -1761,6 +1839,7 @@ window.addEventListener(
         const x =
             (e.clientX /
             window.innerWidth - .5);
+
 
         const y =
             (e.clientY /
@@ -1798,17 +1877,22 @@ projects.forEach(
                 const rect =
                     project.getBoundingClientRect();
 
+
                 const x =
                     e.clientX - rect.left;
+
 
                 const y =
                     e.clientY - rect.top;
 
+
                 const rotateY =
                     ((x / rect.width) - .5) * 2;
 
+
                 const rotateX =
                     ((y / rect.height) - .5) * -2;
+
 
                 project.style.transform =
                     `
@@ -1840,17 +1924,21 @@ projects.forEach(
 ===================================================== */
 
 console.log(
+
 `
 SAMARESH / AI / ML
 
 System initialized.
 
 Keep learning.
+
 Keep building.
 `
+
 );
 
 </script>
 
 </body>
 </html>
+
