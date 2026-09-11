@@ -2004,24 +2004,25 @@ const musicStatus = document.getElementById("musicStatus");
 music.volume = 0.25;
 
 musicBtn.addEventListener("click", () => {
-
     if (music.paused) {
-
         music.play();
-
         musicBtn.innerHTML = "Ⅱ";
         musicStatus.innerHTML = "MUSIC ON";
-
     } else {
-
         music.pause();
-
         musicBtn.innerHTML = "♪";
         musicStatus.innerHTML = "MUSIC OFF";
-
     }
-
 });
+
+document.addEventListener("click", () => {
+    if (music.paused) {
+        music.play().then(() => {
+            musicBtn.innerHTML = "Ⅱ";
+            musicStatus.innerHTML = "MUSIC ON";
+        }).catch(() => {});
+    }
+}, { once: true });
 </script>
 
 </body>
