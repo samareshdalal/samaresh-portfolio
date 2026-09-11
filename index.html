@@ -951,12 +951,69 @@ footer {
         gap: 15px;
     }
 }
+/* =====================================================
+   MUSIC PLAYER
+===================================================== */
 
+.music-player {
+    position: fixed;
+    bottom: 28px;
+    right: 35px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "DM Mono";
+}
+
+.music-player button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    background: #0b0b0b;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: .3s;
+}
+
+.music-player button:hover {
+    border-color: #ff3030;
+    color: #ff3030;
+    transform: scale(1.1);
+}
+
+#musicStatus {
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: #555;
+}
+
+@media(max-width:900px) {
+    .music-player {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    #musicStatus {
+        display: none;
+    }
+}
 </style>
 </head>
 
 
 <body>
+    <!-- MUSIC PLAYER -->
+<div class="music-player">
+    <button id="musicBtn">♪</button>
+    <span id="musicStatus">MUSIC OFF</span>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 
 <!-- =====================================================
@@ -1936,7 +1993,35 @@ Keep building.
 `
 
 );
+/* =====================================================
+   BACKGROUND MUSIC
+===================================================== */
 
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+const musicStatus = document.getElementById("musicStatus");
+
+music.volume = 0.25;
+
+musicBtn.addEventListener("click", () => {
+
+    if (music.paused) {
+
+        music.play();
+
+        musicBtn.innerHTML = "Ⅱ";
+        musicStatus.innerHTML = "MUSIC ON";
+
+    } else {
+
+        music.pause();
+
+        musicBtn.innerHTML = "♪";
+        musicStatus.innerHTML = "MUSIC OFF";
+
+    }
+
+});
 </script>
 
 </body>
